@@ -11,7 +11,7 @@ define sudoers::allowed_command(
   $comment          = undef,
   $allowed_env_variables = []
 ) {
-  require ::sudoers
+  include ::sudoers
 
   if ($user == undef and $group == undef) {
     fail('must define user or group')
