@@ -10,14 +10,14 @@ class sudoers (
   }
 
   File {
-    owner => root,
-    group => root,
+    owner   => root,
+    group   => root,
+    require => Package['sudo'],
   }
 
   file { '/etc/sudoers.d':
-    ensure  => directory,
-    mode    => '0750',
-    require => Package['sudo'],
+    ensure => directory,
+    mode   => '0750',
   }
 
   file_line { 'include_sudoersd':
