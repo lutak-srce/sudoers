@@ -31,8 +31,8 @@ class sudoers (
     content => template('sudoers/env_keep.erb'),
   }
 
-  # autoload configs from zabbix::agent::configs from hiera
-  $sudoers_allowed_commands = hiera_hash('sudoers::allowed_commands', {})
+  # autoload allowed_commands from hiera
+  $sudoers_allowed_commands = lookup('sudoers::allowed_commands', { merge => hash, default_value => {} })
   create_resources(::sudoers::allowed_command, $sudoers_allowed_commands)
 
 }
